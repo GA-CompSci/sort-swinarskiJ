@@ -1,0 +1,3 @@
+interface PrintPretty {
+    void printPretty();  
+}
