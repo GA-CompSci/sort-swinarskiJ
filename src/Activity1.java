@@ -65,7 +65,7 @@ public class Activity1 extends IntegerManager implements PrintPretty{
             
         }
 
-        System.out.println("\n ===== SELECT-SORTED ARRAY ===== (size: " + nums.length + ")");
+        System.out.println("\n ===== SELECT-SORTED ARRAY (NOT DONE) ===== (size: " + nums.length + ")");
         for(int num: nums){
             System.out.print(num + " ");
         }
