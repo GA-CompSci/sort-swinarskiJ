@@ -17,7 +17,15 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         thingie.selectionSort(true);
         thingie.printPretty();
 
+        //insert sort
+        thingie.insertionSort();
+        thingie.printPretty();
+        
+        thingie.insertionSort(true);
+        thingie.printPretty();
     }
+
+
 
     @Override
     void buildList() {
@@ -32,7 +40,10 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         for(int num: nums){
             System.out.print(num + " ");
         }
+        //adds space bewtween sorts
+        System.out.println();
     }
+
 
     @Override
     void shuffle() {
@@ -49,9 +60,67 @@ public class Activity1 extends IntegerManager implements PrintPretty{
 
     }
 
+    
     @Override
     void insertionSort() {
        
+        for(int j = 1; j<nums.length; j++){
+        //backwards while loop    
+            int temp = nums[j];
+            int i = j-1;
+            
+            while(i>-1 && nums[i] > temp){
+                //shift
+                nums[i+1] = nums[i];
+                i--;
+            }
+
+            nums[i+1] = temp; //complete swap
+       }
+    }
+
+    void insertionSort(boolean highToLow) {
+        if(!highToLow){
+            insertionSort();
+        }
+        else{
+            for(int j = 1; j<nums.length; j++){
+            //backwards while loop    
+                int i = j-1;
+                int temp = nums[j];
+                
+                
+                while(i>-1 && nums[i] < temp){
+                    //shift
+                    nums[i+1] = nums[i];
+                    i--;
+                }
+
+                nums[i+1] = temp; //complete swap
+            }
+        }
+    }
+
+
+    @Override
+    void selectionSort() {
+        for(int o = 0; o < nums.length-1; o++){
+
+            int smallest = o;
+
+            for(int i = o+1; i < nums.length; i++){
+                if (nums[i]<nums[smallest]) {
+                    // update the address of the smallest number 
+                    smallest = i;  
+                }
+            }
+            // after I'm done confirming the smallest address, then I swap
+            int temp = nums[smallest];
+            nums[smallest] = nums[o];
+            nums[o] = temp;
+            
+        }
+            
     }
 
     void selectionSort(boolean highToLow){
@@ -76,27 +145,6 @@ public class Activity1 extends IntegerManager implements PrintPretty{
             
         }
         }
-    }
-
-    @Override
-    void selectionSort() {
-        for(int o = 0; o < nums.length-1; o++){
-
-            int smallest = o;
-
-            for(int i = o+1; i < nums.length; i++){
-                if (nums[i]<nums[smallest]) {
-                    // update the address of the smallest number 
-                    smallest = i;  
-                }
-            }
-            // after I'm done confirming the smallest address, then I swap
-            int temp = nums[smallest];
-            nums[smallest] = nums[o];
-            nums[o] = temp;
-            
-        }
-            
     }
 
     @Override
