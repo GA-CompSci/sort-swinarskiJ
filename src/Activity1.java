@@ -6,6 +6,7 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         thingie.buildList();
         thingie.printPretty();
         
+        /*
         //shuffle
         thingie.shuffle();
         thingie.printPretty();
@@ -23,6 +24,10 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         
         thingie.insertionSort(true);
         thingie.printPretty();
+        */
+
+
+
     }
 
 
@@ -149,11 +154,39 @@ public class Activity1 extends IntegerManager implements PrintPretty{
 
     @Override
     void mergeSort() {
-       
+       throw new UnsupportedOperationException("Unimplemented method 'mergeSort'");
     }
 
     @Override
     int pickRandom() {
         throw new UnsupportedOperationException("Unimplemented method 'pickRandom'");
     }
+
+
+    
+    int binarySearch(int target){
+        
+        int low= 0;
+        int high = nums.length-1;
+        //start middle
+        int mid = nums.length/2;
+
+        while (low<= high) { 
+            //equal to target
+            if(nums[mid] == target) return mid;
+            //more than target
+            else if (nums[mid] > target) {
+                high = mid-1;
+            }
+            //less than target
+            else if (nums[mid] < target){
+                low = mid+1;
+            }
+            
+            }
+            //if I couldn't find what I looked for
+            return -1;
+    }
+
+
 }
