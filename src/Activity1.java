@@ -6,25 +6,28 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         thingie.buildList();
         thingie.printPretty();
         
-        /*
         //shuffle
-        thingie.shuffle();
-        thingie.printPretty();
+       thingie.shuffle();
+       thingie.printPretty();
 
         //select sort
-        thingie.selectionSort();
-        thingie.printPretty();
+       //thingie.selectionSort();
+       // thingie.printPretty();
         
-        thingie.selectionSort(true);
-        thingie.printPretty();
+       // thingie.selectionSort(true);
+        //thingie.printPretty();
 
         //insert sort
-        thingie.insertionSort();
-        thingie.printPretty();
+        //thingie.insertionSort();
+        //thingie.printPretty();
         
-        thingie.insertionSort(true);
-        thingie.printPretty();
-        */
+       // thingie.insertionSort(true);
+       //thingie.printPretty();
+
+       //binary
+       thingie.selectionSort(); //for organization
+       thingie.printPretty();
+       thingie.binarySearch(34);
 
 
 
@@ -36,7 +39,7 @@ public class Activity1 extends IntegerManager implements PrintPretty{
     void buildList() {
         nums = new int[20];
         for(int i = 0; i < nums.length; i++){
-            nums[i] = (int)(Math.random()*121)-20;
+            nums[i] = (int)(Math.random()*90)-20;
         }
     }
 
@@ -81,6 +84,10 @@ public class Activity1 extends IntegerManager implements PrintPretty{
             }
 
             nums[i+1] = temp; //complete swap
+
+            //verbose
+            System.out.println("\n \n \n INSERTION PASS #" + j);
+            printPretty();;
        }
     }
 
@@ -169,11 +176,15 @@ public class Activity1 extends IntegerManager implements PrintPretty{
         int low= 0;
         int high = nums.length-1;
         //start middle
-        int mid = nums.length/2;
 
         while (low<= high) { 
+            int mid = (low+high)/2;
             //equal to target
-            if(nums[mid] == target) return mid;
+            if(nums[mid] == target) {
+                System.out.println("!! Target (" + target +") has been foun. !! ");
+                return mid;
+            }
+
             //more than target
             else if (nums[mid] > target) {
                 high = mid-1;
@@ -185,6 +196,7 @@ public class Activity1 extends IntegerManager implements PrintPretty{
             
             }
             //if I couldn't find what I looked for
+            System.out.println("?? Target ("+target+") not found. ??");
             return -1;
     }
 
