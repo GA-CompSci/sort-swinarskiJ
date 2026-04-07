@@ -14,20 +14,27 @@ public class Activity1 extends IntegerManager implements PrintPretty{
        //thingie.selectionSort();
        // thingie.printPretty();
         
-       // thingie.selectionSort(true);
+       //thingie.selectionSort(true);
         //thingie.printPretty();
 
         //insert sort
         //thingie.insertionSort();
         //thingie.printPretty();
         
-       // thingie.insertionSort(true);
+       //thingie.insertionSort(true);
        //thingie.printPretty();
 
+       thingie.pickRandom();
+
        //binary
-       thingie.selectionSort(); //for organization
+       //thingie.selectionSort(); //for organization
+       //thingie.printPretty();
+       //thingie.binarySearch(34);
+
+
+       //merge
+       thingie.mergeSort(thingie.nums);
        thingie.printPretty();
-       thingie.binarySearch(34);
 
 
 
@@ -160,13 +167,54 @@ public class Activity1 extends IntegerManager implements PrintPretty{
     }
 
     @Override
-    void mergeSort() {
-       throw new UnsupportedOperationException("Unimplemented method 'mergeSort'");
+    void mergeSort(int[] nums) {
+       int n = nums.length;
+        //base case
+        if (n<= 1) return;
+
+        //split
+        int mid = n/2;
+        int[] l = new int[mid];
+        int[] r = new int[n-mid];
+
+        for(int i = 0; i<mid; i++){
+            l[i] = nums[i];
+        }
+        for(int i = mid; i<n; i++){
+            r[i-mid] = nums[i];
+        }
+
+        mergeSort(l);
+        mergeSort(r);
+
+        //can't work until base case hits
+        merge(nums, l, r, mid, n-mid);
+
     }
+
+    void merge(int[] nums, int[] l, int[] r, int left, int right){
+        // i = left     j = right       k = nums
+        int i = 0, j = 0, k= 0;
+
+        while(i<left && j<right){
+            if(l[i]<=r[j]){
+                nums[k++] = l[i++];
+            }
+            else{
+                nums[k++] = r[j++];
+            }
+        }
+        while (i<left) nums[k++] = l[i++];  // only left remaining
+        while (j<right) nums[k++] = r[j++]; // only right remaining
+    }
+
 
     @Override
     int pickRandom() {
-        throw new UnsupportedOperationException("Unimplemented method 'pickRandom'");
+        int i = (int)(Math.random()*nums.length);
+        int picked = nums[i];
+        System.out.println("\nChosen number: "+picked+ " (index "+ i+")");
+        return picked;
     }
 
 
@@ -181,7 +229,7 @@ public class Activity1 extends IntegerManager implements PrintPretty{
             int mid = (low+high)/2;
             //equal to target
             if(nums[mid] == target) {
-                System.out.println("!! Target (" + target +") has been foun. !! ");
+                System.out.println("!! Target (" + target +") has been found !! ");
                 return mid;
             }
 
